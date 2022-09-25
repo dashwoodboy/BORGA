@@ -1,0 +1,33 @@
+<script src="/group.js" type="text/javascript"></script>
+
+<div class="container">
+	<div class="container_header">
+		<h1 class="page__title">{{user.username}}'s groups</h1>
+		<h1><a class="add" href="./create/">+</a></h1>
+	</div>
+	<div class="container__content" id="row_button">
+		{{#each user.groups}}
+		<div class="row__container" id="row">
+			<a class="anc" href="./{{id}}/">
+				<div class="list_row">
+					<h1 class="h1">{{name}}</h1>
+					<h3 class="h3">{{description}}</h3>
+
+				</div>
+			</a>
+			<button class="edit__button" data-group-id="{{id}}">Edit</button>
+			<button class="delete__button" data-group-id="{{id}}">Delete</button>
+		</div>
+
+		{{/each}}
+
+		<div class="form_popup" id="popup">
+			<input class="form_popup_input" placeholder="Name" type="text" id="inName">
+			<input class="form_popup_input" placeholder="Description" type="text" id="inDescription">
+			<button class="submit__button" id="editButtonPopup">Edit</button>
+			<button class="submit__button" id="closeButton">Close</button>
+		</div>
+
+	</div>
+
+</div>

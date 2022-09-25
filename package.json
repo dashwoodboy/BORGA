@@ -1,0 +1,42 @@
+{
+    "name": "web-app-project-g_21",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "directories": {
+        "doc": "docs",
+        "lib": "lib"
+    },
+    "scripts": {
+        "start": "node index.js",
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/isel-leic-pi/web-app-project-g_21.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/isel-leic-pi/web-app-project-g_21/issues"
+    },
+    "homepage": "https://github.com/isel-leic-pi/web-app-project-g_21#readme",
+    "devDependencies": {
+        "eslint": "^8.3.0",
+        "jest": "^27.3.1",
+        "jest-openapi": "^0.14.1",
+        "supertest": "^6.1.6"
+    },
+    "dependencies": {
+        "cookie-parser": "^1.4.6",
+        "express": "^4.17.2",
+        "express-handlebars": "^6.0.2",
+        "express-session": "^1.17.2",
+        "hbs": "^4.2.0",
+        "node-fetch": "^2.6.6",
+        "passport": "^0.5.2",
+        "swagger-ui-express": "^4.3.0",
+        "yaml": "^1.10.2",
+        "yamljs": "^0.3.0"
+    }
+}

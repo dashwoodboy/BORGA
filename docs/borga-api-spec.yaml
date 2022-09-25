@@ -1,0 +1,384 @@
+openapi: '3.0.2'
+info:
+  title: Borga
+  description: This application provides access to some of the features provided by the [Board Game Atlas] website 
+  version: 1.0.0
+paths:
+  /api/games:
+    get:
+      summary: Get the list of the most popular games 
+      responses:
+        "200":
+          description: Response body should be an array with the top games of the website
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Game"  
+  /api/games/{gameName}:
+    parameters:
+      - $ref: "#/components/parameters/gameNameParam"
+    get:
+      summary: Get game by name 
+      responses:
+        "200":
+          description: Response body should be a game
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Game"   
+        "404":
+          description: Response body should be an error object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /api/users:
+    post:
+      summary: Create user
+      responses:
+        "201":
+          description: User created. Response body should be a user
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "409":
+          description: Repeated username. Response body should be an error object
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      requestBody:
+        description: Create user with given data
+        required: true
+        content: 
+          application/json:
+            schema:
+              properties:
+                username:
+                  type: string
+                  example: JulinhoSilva
+  /api/users/{username}:
+    parameters:
+      - $ref: "#/components/parameters/userNameParam"
+    get:
+      security:
+        - bearerAuth: []
+      summary: Get user
+      responses:
+        "200":
+          description: Response body should be a user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "401":
+          description: Unauthorized user. Response body should be an error object
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Response body should be an error object
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /api/users/{username}/groups:
+    parameters:
+      - $ref: "#/components/parameters/userNameParam"
+    post:
+      security:
+          - bearerAuth: []
+      summary: Create group for user
+      responses:
+        "201":
+          description: Group created. Response body should be the user it belongs to
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "401":
+          description: Unauthorized user. Response body should be an error object
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: User not found. Response body should be an error object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: Indie Games
+                description:
+                  type: string
+                  example: Group with indie games for PC
+        description: Group item to add   
+  /api/users/{username}/groups/{groupId}:
+    parameters:
+      - $ref: "#/components/parameters/userNameParam"
+      - $ref: "#/components/parameters/groupIdParam"
+    get:
+      security:
+        - bearerAuth: []
+      summary: Get group from user
+      responses:
+        "200":
+          description: Response body should be a group
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Group"
+        "401":
+          description: Unauthorized user. Response body should be an error object
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Response body should be an error object
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      security:
+        - bearerAuth: []
+      summary: Add a new game to the group
+      responses:
+        "201":
+          description: Game added. Response body should be a game
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Game"
+        "401":
+          description: Unauthorized user. Response body should be an error object
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Repeated game. Response body should be an error object
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                gameName:
+                  type:
+                    string
+                  example:
+                    Splendor
+    put:
+      security:
+        - bearerAuth: []
+      summary: Edit group data
+      responses:
+        "200":
+          description: Response body should be a group
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Group"
+        "401":
+          description: Unauthorized user. Response body should be an error object
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Response body should be an error object
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                  example: Indie Games
+                description:
+                  type: string
+                  example: Group with indie games for PC
+    delete:
+      security:
+        - bearerAuth: []
+      summary: Delete group
+      responses:
+        "204":
+          description: Group deleted
+        "401":
+          description: Unauthorized user. Response body should be an error object
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Response body should be an error object
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /api/users/{username}/groups/{groupId}/games/{gameName}:
+    parameters:
+      - $ref: "#/components/parameters/userNameParam"
+      - $ref: "#/components/parameters/groupIdParam"
+      - $ref: "#/components/parameters/gameNameParam"
+    get:
+      security:
+        - bearerAuth: []
+      summary: Get game from group
+      responses:
+        "200":
+          description: Response body should be a game
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Game"
+        "401":
+          description: Unauthorized user. Response body should be an error object
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Response body should be an error object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    delete:
+      security:
+        - bearerAuth: []
+      summary: Delete given game from given group
+      responses:
+        "204":
+          description: Game deleted
+        "401":
+          description: Unauthorized user. Response body should be an error object
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Response body should be an error object
+components: 
+  securitySchemes:
+    bearerAuth:            
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    
+  parameters:
+    gameNameParam:
+      name: gameName
+      in: path
+      required: true
+      schema:
+        type: string
+    userNameParam:
+      name: username
+      in: path
+      required: true
+      schema:
+        type: string
+    groupIdParam:
+      name: groupId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+
+  schemas:
+    User:
+      type: object
+      required:
+        - username
+      properties:
+        userId:
+          type: string
+          format: uuid
+        username:
+          type: string
+          example: JulinhoSilva
+        groups:
+          type: object
+          items:
+            $ref: "#/components/schemas/Group"
+    Group:
+      type: object
+      required:
+        - id
+        - name
+        - description
+        - games
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 139757d4-6312-4291-a7e6-da7ac3c8a423
+        name:
+          type: string
+          example: Indie Games
+        description:
+          type: string
+          example: Group with indie games for PC
+        games:
+          type: array
+          example: []
+          
+    Game:
+      type: object
+      required:
+        - id
+        - name
+        - url
+      properties:
+        id:
+          type: string
+          example: O0G8z5Wgz1
+        name:
+          type: string
+          example: Splendor
+        url:
+          type: string
+          example: https://www.boardgameatlas.com/game/O0G8z5Wgz1/splendor
+        image_url:
+          type: string
+          example: https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1559254164722-51AHDwGznvL.jpg
+        mechanics:
+          type: array
+          example: ["Drafting","Engine Building","Set Collection"]
+        categories:
+          type: array
+          example: ["Card Game","Economic","Resource Management"]
+        description_preview:
+          type: string
+          example: " As a wealthy Renaissance merchant, acquire mines and transportation, hire artisans and woo the nobility. Create the most fantastic jewelry to become the best-known merchant of them all! Acquire precious stones to trade them for development cards. Use development cards to acquire more gem stones. Use your gems and gold to create the most fantastic jewelry, and appeal to the nobles to gain the prestige you need to win.  Splendor is a fast-paced and addictive game of chip-collecting and card development. Players are merchants of the Renaissance trying to buy gem mines, means of transportation, shops; all in order to acquire the most prestige points. If you're wealthy enough, you might even receive a visit from a noble at some point, which of course will further increase your prestige.  On your turn, you may (1) collect chips (gems), or (2) buy and build a card, or (3) reserve one card. If you collect chips, you take either three different kinds of chips or two chips of the same kind. If you buy a card, you pay its price in chips and add it to your playing area. To reserve a card, you place it in front of you face down for later building; this costs you a round, but you also get gold in the form of a joker chip, which you can use as any gem.  All of the cards you buy increase your wealth as they give you a permanent gem bonus for later buys; some of the cards also give you prestige points. In order to win the game, you must reach 15 prestige points before your opponents do. "
+    Error:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          example: "Error message"

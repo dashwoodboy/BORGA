@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>BORGA</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="/borga.css" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<div class="header">
+		<h1><a class="logo" href="/">BORGA</a></h1>
+
+		<nav>
+
+			<ul class="navbar">
+				<li class="nav-item">
+					<a class="nav-link" href="/games/">Games</a>
+				</li>
+				{{#if user}}
+				<li class="nav-item">
+					<a class="nav-link" href={{userLink}}>Groups</a>
+				</li>
+				<li class="nav-item">
+					<form action="/signout/" method="post">
+						<input type="submit" class="form_logout" value="Sign Out"></input>
+					</form>
+				</li>
+				{{/if}}
+			</ul>
+
+		</nav>
+
+	</div>
+
+	<div class="content">
+		{{{body}}}
+	</div>
+
+	<footer class="footer">
+		<h3 class="about__txt">Borga App About</h3>
+		<p class="about__intro__txt">This aplications was develop by:</p>
+		<p class="about__devs__txt">João Silva - David Lourenço - Lourenço Vala</p>
+		<h3 class="about__support_txt">Suported By: Board Game Atlas</h3>
+	</footer>
+</body>
+
+</html>

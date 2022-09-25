@@ -1,0 +1,26 @@
+<script src="/signup.js" type="text/javascript"></script>
+<div class="container">
+	<div class="post">
+		<h2 class="pagetitle">Sign Up</h2>
+
+		<div class="form__container">
+			<div class="alert" id="alert">
+				{{#if alert}}
+				<p class="error_text">{{alert.message}}</p>
+				{{/if}}
+			</div>
+			<div class="row">
+				<input type="text" class="form" placeholder="Username" id="username" name="username"
+					required="required">
+
+			</div>
+			<div class="row">
+				<input type="password" class="form" placeholder="Password" id="password" name="password"
+					required="required">
+			</div>
+			<div class="row">
+				<input type="submit" class="button__form" id="signupbutton">
+			</div>
+		</div>
+	</div>
+</div>

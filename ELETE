@@ -1,0 +1,6 @@
+HTTP/1.1 200 OK
+X-elastic-product: Elasticsearch
+Warning: 299 Elasticsearch-7.16.2-2b937c44140b6559905130a8650c64dbd0879cfb "Elasticsearch built-in security features are not enabled. Without authentication, your cluster could be accessible to anyone. See https://www.elastic.co/guide/en/elasticsearch/reference/7.16/security-minimal-setup.html to enable security."
+content-type: application/json; charset=UTF-8
+content-length: 6594
+

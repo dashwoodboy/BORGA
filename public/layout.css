@@ -1,0 +1,126 @@
+.header {
+    position: relative;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+    justify-content: space-between;
+    z-index: 9;
+    border-radius: 20px;
+    font-family: 'Permanent Marker', cursive;
+}
+
+.header h1 {
+    margin-left: 30px;
+    font-size: 40px;
+    font-weight: 900;
+}
+
+.logo {
+    text-decoration: none;
+    color: #F75B75;
+    transition: 0.5s;
+}
+
+.search_container {
+	display: flex;
+	flex-direction: column;
+	width: 40%;
+}
+
+.navbar {
+    display: flex;
+    list-style: none;
+    text-decoration: none;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #F75B75;
+    margin-right: 50px;
+    font-weight: 800;
+    font-size: 30px;
+    transition: 0.5s;
+}
+
+.nav-link:hover,
+.logo:hover {
+    color: #2F526E;
+}
+
+.container_header_search {
+	display: flex;
+	flex-direction: column;
+    width: 100%;
+    height: 80px;
+    position: absolute;
+	align-items: center;
+    justify-content: center;
+    top: 10px;
+}
+
+.content {
+    position: absolute;
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #F0F5F7;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #2F526E;
+    z-index: 9;
+    height: 4%;
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    transition: 0.5s;
+}
+
+.footer:hover {
+    height: 10%;
+}
+
+.about__txt {
+    font-family: 'Permanent Marker', cursive;
+    color: #F75B75;
+    margin-top: 0.4%;
+    margin-left: 20px;
+}
+
+.about__intro__txt {
+    color: #F0F5F7;
+    margin-top: 2%;
+    margin-left: 20px;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.about__devs__txt {
+    justify-content: center;
+    align-content: center;
+    color: #F0F5F7;
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 2.07%;
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+.about__support_txt {
+    position: absolute;
+    right: 20px;
+    margin-top: 2%;
+    color: #F0F5F7;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+}
